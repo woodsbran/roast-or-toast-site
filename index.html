@@ -1,196 +1,688 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
 
-<title>Roast or Toast</title>
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
-<style>
+    <meta
+        name="description"
+        content="Roast or Toast is the social opinion game where every opinion counts."
+    >
 
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
+    <title>Roast or Toast</title>
 
-body{
-    font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",sans-serif;
-    background:#FAF7F2;
-    color:#1B1B1B;
-    line-height:1.7;
-}
+    <style>
+        :root {
+            --cream: #fffaf2;
+            --cream-dark: #f4ecdf;
+            --coral: #ff5f50;
+            --coral-dark: #e94f42;
+            --teal: #51b3aa;
+            --teal-dark: #3b9991;
+            --ink: #19191b;
+            --muted: #696765;
+            --white: #ffffff;
+            --border: rgba(25, 25, 27, 0.08);
+            --shadow: 0 24px 70px rgba(62, 48, 38, 0.12);
+        }
 
-.container{
-    max-width:900px;
-    margin:auto;
-    padding:70px 28px;
-}
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
-.hero{
-    text-align:center;
-    margin-bottom:70px;
-}
+        html {
+            scroll-behavior: smooth;
+        }
 
-.badge{
-    display:inline-block;
-    background:#E56A54;
-    color:white;
-    padding:8px 18px;
-    border-radius:999px;
-    margin-bottom:24px;
-    font-weight:600;
-}
+        body {
+            font-family:
+                -apple-system,
+                BlinkMacSystemFont,
+                "SF Pro Display",
+                "SF Pro Text",
+                "Segoe UI",
+                sans-serif;
 
-.hero h1{
-    font-size:64px;
-    font-weight:800;
-    margin-bottom:18px;
-}
+            background: var(--cream);
+            color: var(--ink);
+            line-height: 1.6;
+        }
 
-.hero p{
-    font-size:24px;
-    color:#555;
-    max-width:650px;
-    margin:auto;
-}
+        a {
+            color: inherit;
+        }
 
-.card{
-    background:white;
-    border-radius:26px;
-    padding:40px;
-    margin-bottom:30px;
-    box-shadow:0 12px 35px rgba(0,0,0,.07);
-}
+        img {
+            display: block;
+            max-width: 100%;
+        }
 
-h2{
-    font-size:32px;
-    margin-bottom:18px;
-}
+        .page-shell {
+            width: min(1180px, calc(100% - 40px));
+            margin: 0 auto;
+        }
 
-p{
-    font-size:18px;
-}
+        .nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 24px 0;
+        }
 
-ul{
-    padding-left:22px;
-    margin-top:15px;
-}
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 18px;
+            font-weight: 800;
+            text-decoration: none;
+        }
 
-li{
-    margin-bottom:10px;
-    font-size:18px;
-}
+        .brand img {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(25, 25, 27, 0.14);
+        }
 
-.highlight{
-    color:#E56A54;
-    font-weight:700;
-}
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 26px;
+        }
 
-.email{
-    display:inline-block;
-    margin-top:20px;
-    color:#E56A54;
-    text-decoration:none;
-    font-size:20px;
-    font-weight:600;
-}
+        .nav-links a {
+            color: var(--muted);
+            font-size: 15px;
+            font-weight: 700;
+            text-decoration: none;
+        }
 
-.email:hover{
-    text-decoration:underline;
-}
+        .nav-links a:hover {
+            color: var(--ink);
+        }
 
-.footer{
-    text-align:center;
-    color:#777;
-    margin-top:60px;
-    font-size:15px;
-}
+        .hero {
+            min-height: 690px;
+            display: grid;
+            grid-template-columns: 1.15fr 0.85fr;
+            align-items: center;
+            gap: 70px;
+            padding: 70px 0 110px;
+        }
 
-</style>
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 24px;
+            padding: 9px 15px;
+            border: 1px solid rgba(255, 95, 80, 0.2);
+            border-radius: 999px;
+            background: rgba(255, 95, 80, 0.1);
+            color: var(--coral-dark);
+            font-size: 14px;
+            font-weight: 800;
+        }
 
+        .hero h1 {
+            max-width: 760px;
+            font-size: clamp(64px, 8vw, 108px);
+            font-weight: 900;
+            letter-spacing: -0.07em;
+            line-height: 0.9;
+        }
+
+        .hero h1 span {
+            color: var(--coral);
+        }
+
+        .hero-copy {
+            max-width: 650px;
+            margin-top: 30px;
+            color: var(--muted);
+            font-size: clamp(20px, 2.3vw, 27px);
+            line-height: 1.45;
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+            margin-top: 34px;
+        }
+
+        .button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 56px;
+            padding: 0 24px;
+            border-radius: 18px;
+            font-size: 16px;
+            font-weight: 800;
+            text-decoration: none;
+            transition:
+                transform 160ms ease,
+                box-shadow 160ms ease,
+                background 160ms ease;
+        }
+
+        .button:hover {
+            transform: translateY(-2px);
+        }
+
+        .button-primary {
+            background: var(--ink);
+            color: var(--white);
+            box-shadow: 0 14px 28px rgba(25, 25, 27, 0.18);
+        }
+
+        .button-secondary {
+            border: 1px solid var(--border);
+            background: var(--white);
+            color: var(--ink);
+        }
+
+        .hero-note {
+            margin-top: 18px;
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        .icon-stage {
+            position: relative;
+            display: grid;
+            place-items: center;
+            min-height: 500px;
+        }
+
+        .icon-stage::before,
+        .icon-stage::after {
+            position: absolute;
+            content: "";
+            border-radius: 50%;
+            filter: blur(1px);
+        }
+
+        .icon-stage::before {
+            width: 340px;
+            height: 340px;
+            top: 10px;
+            right: -40px;
+            background: rgba(81, 179, 170, 0.18);
+        }
+
+        .icon-stage::after {
+            width: 270px;
+            height: 270px;
+            bottom: 0;
+            left: -20px;
+            background: rgba(255, 95, 80, 0.18);
+        }
+
+        .app-icon {
+            position: relative;
+            z-index: 1;
+            width: min(390px, 86%);
+            border-radius: 27%;
+            box-shadow: var(--shadow);
+            transform: rotate(2deg);
+        }
+
+        .section {
+            padding: 110px 0;
+        }
+
+        .section-heading {
+            max-width: 760px;
+            margin-bottom: 48px;
+        }
+
+        .section-label {
+            margin-bottom: 12px;
+            color: var(--coral-dark);
+            font-size: 14px;
+            font-weight: 900;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+
+        .section h2 {
+            font-size: clamp(42px, 5vw, 68px);
+            font-weight: 900;
+            letter-spacing: -0.055em;
+            line-height: 1;
+        }
+
+        .section-intro {
+            max-width: 720px;
+            margin-top: 20px;
+            color: var(--muted);
+            font-size: 21px;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .feature-card {
+            min-height: 245px;
+            padding: 30px;
+            border: 1px solid var(--border);
+            border-radius: 28px;
+            background: rgba(255, 255, 255, 0.78);
+            box-shadow: 0 18px 42px rgba(62, 48, 38, 0.06);
+        }
+
+        .feature-icon {
+            display: grid;
+            place-items: center;
+            width: 52px;
+            height: 52px;
+            margin-bottom: 36px;
+            border-radius: 16px;
+            font-size: 25px;
+        }
+
+        .feature-card:nth-child(odd) .feature-icon {
+            background: rgba(255, 95, 80, 0.14);
+        }
+
+        .feature-card:nth-child(even) .feature-icon {
+            background: rgba(81, 179, 170, 0.16);
+        }
+
+        .feature-card h3 {
+            margin-bottom: 10px;
+            font-size: 24px;
+            font-weight: 850;
+            letter-spacing: -0.03em;
+        }
+
+        .feature-card p {
+            color: var(--muted);
+            font-size: 17px;
+        }
+
+        .split-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 26px;
+            padding-bottom: 110px;
+        }
+
+        .info-card {
+            padding: 44px;
+            border-radius: 32px;
+        }
+
+        .support-card {
+            background: var(--coral);
+            color: var(--white);
+        }
+
+        .privacy-card {
+            background: var(--teal);
+            color: var(--white);
+        }
+
+        .info-card h2 {
+            margin-bottom: 18px;
+            font-size: 42px;
+            font-weight: 900;
+            letter-spacing: -0.04em;
+        }
+
+        .info-card p {
+            font-size: 18px;
+            opacity: 0.92;
+        }
+
+        .support-email {
+            display: inline-flex;
+            margin-top: 28px;
+            padding: 14px 18px;
+            border-radius: 15px;
+            background: var(--white);
+            color: var(--ink);
+            font-size: 17px;
+            font-weight: 850;
+            text-decoration: none;
+        }
+
+        .privacy-list {
+            display: grid;
+            gap: 13px;
+            margin-top: 24px;
+            list-style: none;
+        }
+
+        .privacy-list li {
+            display: flex;
+            gap: 10px;
+            font-size: 17px;
+        }
+
+        .privacy-list li::before {
+            content: "✓";
+            font-weight: 900;
+        }
+
+        footer {
+            padding: 34px 0 48px;
+            border-top: 1px solid var(--border);
+        }
+
+        .footer-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        .footer-title {
+            color: var(--ink);
+            font-weight: 800;
+        }
+
+        @media (max-width: 900px) {
+            .hero {
+                min-height: auto;
+                grid-template-columns: 1fr;
+                gap: 45px;
+                padding-top: 55px;
+            }
+
+            .icon-stage {
+                min-height: 390px;
+            }
+
+            .app-icon {
+                width: min(340px, 82%);
+            }
+
+            .feature-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .split-section {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .page-shell {
+                width: min(100% - 28px, 1180px);
+            }
+
+            .nav {
+                padding-top: 16px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .hero {
+                padding: 55px 0 75px;
+            }
+
+            .hero h1 {
+                font-size: 63px;
+            }
+
+            .hero-copy {
+                font-size: 20px;
+            }
+
+            .icon-stage {
+                min-height: 320px;
+            }
+
+            .section {
+                padding: 78px 0;
+            }
+
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .feature-card {
+                min-height: auto;
+            }
+
+            .info-card {
+                padding: 32px 26px;
+            }
+
+            .info-card h2 {
+                font-size: 36px;
+            }
+
+            .support-email {
+                max-width: 100%;
+                overflow-wrap: anywhere;
+            }
+
+            .footer-inner {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+        }
+    </style>
 </head>
 
 <body>
+    <header class="page-shell">
+        <nav class="nav">
+            <a class="brand" href="#top">
+                <img src="app-icon.png" alt="Roast or Toast app icon">
+                <span>Roast or Toast</span>
+            </a>
 
-<div class="container">
+            <div class="nav-links">
+                <a href="#about">About</a>
+                <a href="#features">Features</a>
+                <a href="#support">Support</a>
+                <a href="#privacy">Privacy</a>
+            </div>
+        </nav>
+    </header>
 
-    <div class="hero">
+    <main id="top">
+        <section class="hero page-shell">
+            <div>
+                <div class="eyebrow">
+                    🔥 Coming soon to the App Store
+                </div>
 
-        <div class="badge">
-            🔥 Available on the App Store
+                <h1>
+                    Every opinion
+                    <span>counts.</span>
+                </h1>
+
+                <p class="hero-copy">
+                    Roast it. Toast it. Guess the crowd. The social opinion
+                    game built for hot takes, funny debates, and moments that
+                    get everyone talking.
+                </p>
+
+                <div class="hero-actions">
+                    <a class="button button-primary" href="#about">
+                        Discover the game
+                    </a>
+
+                    <a class="button button-secondary" href="#support">
+                        Get support
+                    </a>
+                </div>
+
+                <p class="hero-note">
+                    No account required. Jump in and start playing.
+                </p>
+            </div>
+
+            <div class="icon-stage">
+                <img
+                    class="app-icon"
+                    src="app-icon.png"
+                    alt="Roast or Toast app icon"
+                >
+            </div>
+        </section>
+
+        <section class="section page-shell" id="about">
+            <div class="section-heading">
+                <p class="section-label">About the game</p>
+
+                <h2>
+                    Some moments deserve applause. Others deserve a roast.
+                </h2>
+
+                <p class="section-intro">
+                    Roast or Toast is a casual social game where you react to
+                    funny, relatable, and unexpected everyday situations.
+                    Make your choice, predict the crowd, earn Heat, and see
+                    where your opinions land.
+                </p>
+            </div>
+        </section>
+
+        <section class="section page-shell" id="features">
+            <div class="section-heading">
+                <p class="section-label">Features</p>
+
+                <h2>
+                    Quick to play. Hard to stop debating.
+                </h2>
+            </div>
+
+            <div class="feature-grid">
+                <article class="feature-card">
+                    <div class="feature-icon">🔥</div>
+
+                    <h3>Roast or Toast</h3>
+
+                    <p>
+                        Decide whether each relatable moment deserves a roast
+                        or a toast.
+                    </p>
+                </article>
+
+                <article class="feature-card">
+                    <div class="feature-icon">👥</div>
+
+                    <h3>Guess the Crowd</h3>
+
+                    <p>
+                        Predict how everyone else voted and see whether you
+                        really know the room.
+                    </p>
+                </article>
+
+                <article class="feature-card">
+                    <div class="feature-icon">🏆</div>
+
+                    <h3>Earn Heat</h3>
+
+                    <p>
+                        Build your Heat, level up, and unlock new titles as you
+                        play.
+                    </p>
+                </article>
+
+                <article class="feature-card">
+                    <div class="feature-icon">📊</div>
+
+                    <h3>Track Your Takes</h3>
+
+                    <p>
+                        See your Roast and Toast history, lifetime stats, and
+                        progress.
+                    </p>
+                </article>
+
+                <article class="feature-card">
+                    <div class="feature-icon">⚡</div>
+
+                    <h3>Play Your Way</h3>
+
+                    <p>
+                        Choose a quick round or settle in for a longer session
+                        with friends.
+                    </p>
+                </article>
+
+                <article class="feature-card">
+                    <div class="feature-icon">💬</div>
+
+                    <h3>Start Conversations</h3>
+
+                    <p>
+                        Perfect for game nights, road trips, dates, parties,
+                        or passing the time.
+                    </p>
+                </article>
+            </div>
+        </section>
+
+        <section class="split-section page-shell">
+            <article class="info-card support-card" id="support">
+                <h2>Need help?</h2>
+
+                <p>
+                    Found a bug, have a question, or want to suggest a future
+                    feature? Send a message and include as much detail as
+                    possible.
+                </p>
+
+                <a
+                    class="support-email"
+                    href="mailto:b_woods20@icloud.com?subject=Roast%20or%20Toast%20Support"
+                >
+                    b_woods20@icloud.com
+                </a>
+            </article>
+
+            <article class="info-card privacy-card" id="privacy">
+                <h2>Your privacy matters.</h2>
+
+                <p>
+                    Roast or Toast is designed to be simple and private.
+                </p>
+
+                <ul class="privacy-list">
+                    <li>No account or sign-in is required.</li>
+                    <li>No personal information is collected.</li>
+                    <li>Game progress is stored locally on your device.</li>
+                    <li>No personal data is sold or shared.</li>
+                </ul>
+            </article>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-inner page-shell">
+            <div>
+                <span class="footer-title">Roast or Toast</span>
+                <span> · Version 1.0</span>
+            </div>
+
+            <div>
+                Made by Branden Woods · © 2026
+            </div>
         </div>
-
-        <h1>Roast or Toast</h1>
-
-        <p>
-            The social opinion game where every opinion counts.
-        </p>
-
-    </div>
-
-    <div class="card">
-
-        <h2>About</h2>
-
-        <p>
-            Roast or Toast is a casual social game where players react to funny,
-            relatable, and unexpected everyday situations.
-        </p>
-
-        <p style="margin-top:18px;">
-            Decide whether each moment deserves a
-            <span class="highlight">Roast 🔥</span>
-            or a
-            <span class="highlight">Toast ❤️</span>,
-            then see if you can predict what everyone else would choose.
-        </p>
-
-        <p style="margin-top:18px;">
-            Whether you're hanging out with friends, on a road trip,
-            waiting in line, or just relaxing at home,
-            every round starts a conversation.
-        </p>
-
-    </div>
-
-    <div class="card">
-
-        <h2>Support</h2>
-
-        <p>
-            Need help, found a bug, or have an idea for a future feature?
-            I'd love to hear from you.
-        </p>
-
-        <a class="email" href="mailto:b_woods20@icloud.com">
-            b_woods20@icloud.com
-        </a>
-
-    </div>
-
-    <div class="card">
-
-        <h2>Privacy</h2>
-
-        <p>
-            Roast or Toast respects your privacy.
-        </p>
-
-        <ul>
-            <li>No account or sign-in is required.</li>
-            <li>No personal information is collected.</li>
-            <li>Game progress is stored locally on your device.</li>
-            <li>No personal data is sold or shared.</li>
-        </ul>
-
-    </div>
-
-    <div class="footer">
-        © 2026 Branden Woods
-    </div>
-
-</div>
-
+    </footer>
 </body>
 </html>
